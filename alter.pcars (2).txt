@@ -1,0 +1,27 @@
+ALTER TABLE pcar ADD CONSTRAINT fketadr FOREIGN KEY (id_driver) REFERENCES pcar_driver(idpcar_driver) ON DELETE CASCADE;
+
+ALTER TABLE pcar_usr ADD CONSTRAINT fkusta FOREIGN KEY (idpcar) REFERENCES pcar(idpcar) ON DELETE CASCADE;
+
+ALTER TABLE trip_details ADD CONSTRAINT fktddr FOREIGN KEY (idpcar_driver) REFERENCES pcar_driver(idpcar_driver) ON DELETE CASCADE;
+
+ALTER TABLE trip_details ADD CONSTRAINT fktdusr FOREIGN KEY (idpcar_usr) REFERENCES pcar_usr(idpcar_usr) ON DELETE CASCADE;
+
+ALTER TABLE trip_details ADD CONSTRAINT fktdtax FOREIGN KEY (idpcar) REFERENCES pcar(idpcar) ON DELETE CASCADE;
+
+ALTER TABLE bill_details ADD CONSTRAINT fkbdtd FOREIGN KEY (id_trip) REFERENCES trip_details(id_trip) ON DELETE CASCADE;
+
+ALTER TABLE bill_details ADD CONSTRAINT fkbdusr FOREIGN KEY (idpcar_usr) REFERENCES pcar_usr(idpcar_usr) ON DELETE CASCADE;
+
+ALTER TABLE feedback ADD CONSTRAINT fkfbemp FOREIGN KEY (id_customer) REFERENCES car_service_company(tsc_id) ON DELETE CASCADE;
+
+ALTER TABLE feedback ADD CONSTRAINT fkfbtd FOREIGN KEY (id_trip) REFERENCES trip_details(id_trip) ON DELETE CASCADE;
+
+ALTER TABLE feedback ADD CONSTRAINT fkfbusr FOREIGN KEY (idpcar_usr) REFERENCES pcar_usr(idpcar_usr) ON DELETE CASCADE;
+
+ALTER TABLE owners_details ADD CONSTRAINT fkeowtax FOREIGN KEY (idpcar) REFERENCES pcar(idpcar) ON DELETE CASCADE;
+
+ALTER TABLE owners_details ADD CONSTRAINT fkeowowns FOREIGN KEY (id_owner) REFERENCES owns(id_owner) ON DELETE CASCADE;
+
+ALTER TABLE individual ADD CONSTRAINT fkeinowns FOREIGN KEY (id_owner) REFERENCES owns(id_owner) ON DELETE CASCADE;
+
+ALTER TABLE car_service_company ADD CONSTRAINT fketscowns FOREIGN KEY (id_owner) REFERENCES owns(id_owner) ON DELETE CASCADE;

@@ -1,0 +1,109 @@
+pcar
+--------------------------------------------------------------------
+
+INSERT INTO pcar VALUES(1,'K12','Benz300D',to_date('08/21/2017', 'mm/dd/yyyy'),'SUV','Available',20);
+INSERT INTO pcar VALUES(2,'K13','toyota',to_date('02/17/2017', 'mm/dd/yyyy'),'MVU','Available',19);
+INSERT INTO pcar VALUES(3,'K14','mahindra',to_date('11/21/2017', 'mm/dd/yyyy'),'jeep','Available',28);
+
+SELECT * FROM pcar;
+
+
+pcar_driver
+----------------------------------------------------------------------
+
+INSERT INTO pcar_driver VALUES(20,'Abhi','Gowda','Male','4693805870',25,5);
+INSERT INTO pcar_driver VALUES(19,'Anjali','Gandhi','Female','469825470',23,4);
+INSERT INTO pcar_driver VALUES(28,'muzfar','syed','Male','4693805870',25,5);
+
+SELECT * FROM pcar_driver;
+
+
+pcar_usr
+-----------------------------------------------------------------------
+
+INSERT INTO pcar_usr VALUES(1,'abhi','gowda','123456','Male','guntur',1);
+INSERT INTO pcar_usr VALUES(2,'anjali','gandhi','123456','Female','machvaram',2);
+INSERT INTO pcar_usr VALUES(3,'muzfar','syed','123456','Male','nuzvid',3);
+
+SELECT * FROM pcar_usr;
+
+
+trip_details
+------------------------------------------------------------------------
+
+INSERT INTO TRIP_DETAILS VALUES(1,to_date('01/01/2017','mm/dd/yyyy'),323,20,1,1,TO_TIMESTAMP('2017-01-01 06:14:00', 'YYYY-MM-DD HH24:MI:SS'),TO_TIMESTAMP('2017-01-01 08:14:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO TRIP_DETAILS VALUES(2,to_date('11/22/2017','mm/dd/yyyy'),420,19,2,2,TO_TIMESTAMP('2017-11-22 06:14:00', 'YYYY-MM-DD HH24:MI:SS'),TO_TIMESTAMP('2017-11-22 10:14:00', 'YYYY-MM-DD HH24:MI:SS'));
+INSERT INTO TRIP_DETAILS VALUES(3,to_date('11/15/2017','mm/dd/yyyy'),270,28,3,3,TO_TIMESTAMP('2017-11-15 06:14:00', 'YYYY-MM-DD HH24:MI:SS'),TO_TIMESTAMP('2017-11-15 10:14:00', 'YYYY-MM-DD HH24:MI:SS'));
+
+SELECT * FROM trip_details;
+
+
+bill_details
+-------------------------------------------------------------------------
+
+INSERT INTO BILL_DETAILS VALUES(1,to_date('01/01/2017','mm/dd/yyyy'),100.10,2.11,323,1,1);
+INSERT INTO BILL_DETAILS VALUES(2,to_date('11/14/2017','mm/dd/yyyy'),50,1.11,270,2,2);
+INSERT INTO BILL_DETAILS VALUES(3,to_date('11/15/2017','mm/dd/yyyy'),250,1.11,470,3,3);
+
+SELECT * FROM bill_details;
+
+
+feedback
+--------------------------------------------------------------------------
+
+INSERT INTO feedback VALUES(1,'good','abhig.ajmer@gmail.com',1,1,1);
+INSERT INTO feedback VALUES(1,'good','anjali.gandhi@gmail.com',2,2,2);
+INSERT INTO feedback VALUES(1,'good','muzfar.1221@gmail.com',3,3,3);
+
+SELECT * FROM feedback;
+
+
+owns
+---------------------------------------------------------------------------
+
+INSERT INTO owns VALUES(1,1);
+INSERT INTO owns VALUES(2,2);
+INSERT INTO owns VALUES(3,3);
+
+SELECT * FROM owns;
+
+
+owner_details
+----------------------------------------------------------------------------
+INSERT INTO owners_details VALUES (1,1);
+INSERT INTO owners_details VALUES (2,2);
+INSERT INTO owners_details VALUES (3,3);
+
+SELECT * FROM owner_details;
+
+
+individual
+----------------------------------------------------------------------------
+
+INSERT INTO INDIVIDUAL VALUES(123,'abhi owner ind',1);
+INSERT INTO INDIVIDUAL VALUES(124,'anjali owner ind',2);
+INSERT INTO INDIVIDUAL VALUES(125,'muzfar owner ind',3);
+
+SELECT * FROM individual;
+
+
+
+car_service_company
+-----------------------------------------------------------------------------
+
+INSERT INTO car_service_company VALUES (1,'a taxi comp',1);
+INSERT INTO car_service_company VALUES (2,'b taxi comp',2);
+INSERT INTO car_service_company VALUES (3,'c taxi comp',3);
+
+SELECT * FROM car_service_company;
+
+
+
+customer_service
+-----------------------------------------------------------------------------
+
+INSERT INTO CUSTOMER_SERVICE VALUES(1,'ram');
+INSERT INTO CUSTOMER_SERVICE VALUES(2,'rani');
+INSERT INTO CUSTOMER_SERVICE VALUES(3,'rana');
+
+SELECT * FROM customer_service;

@@ -1,0 +1,100 @@
+CREATE TABLE pcar (
+   idpcar integer NOT NULL,
+   reg_no VARCHAR(20),
+   car_model VARCHAR(20),
+   car_yr DATE,
+   car_type VARCHAR(20),
+   car_status VARCHAR(20),
+   id_driver integer,
+   PRIMARY KEY (idpcar),
+   UNIQUE (reg_no)
+);
+
+CREATE TABLE  pcar_usr (
+   idpcar_usr integer NOT NULL,
+   use_fname VARCHAR(20),
+   use_lname VARCHAR(20),
+   ph_no integer,
+   Gender VARCHAR(10),
+   Address VARCHAR(50),
+   idpcar integer,
+   PRIMARY KEY (idpcar_usr)
+);
+
+CREATE TABLE   pcar_driver (
+   idpcar_driver integer NOT NULL,
+   driver_fname VARCHAR(10),
+   driver_lname VARCHAR(20),
+   Gender VARCHAR(10),
+   ph_no VARCHAR(20),
+   Age integer,
+   Rating integer,
+   PRIMARY KEY (idpcar_driver)
+);
+
+CREATE TABLE  trip_details(
+   id_trip integer NOT NULL,
+   Trip_date DATE,
+   Trip_amount decimal(10,2),
+   idpcar_driver integer,
+   idpcar_usr integer,
+   idpcar integer,
+   Strt_time TIMESTAMP,
+   End_time TIMESTAMP,
+   PRIMARY KEY (id_trip)
+);
+
+CREATE TABLE bill_details (
+   bill_no integer NOT NULL,
+   bill_date DATE,
+   advance_amnt decimal(10,2),
+   disc_amnt decimal(10,2),
+   tot_amnt decimal(10,2),
+   idpcar_usr integer,
+   id_trip integer,
+   PRIMARY KEY (bill_no),
+   UNIQUE (id_trip)
+);
+
+CREATE TABLE  customer_service (
+   id_customer integer NOT NULL,
+   customer_fname VARCHAR(20),
+   PRIMARY KEY (id_customer)
+);
+
+CREATE TABLE  feedback (
+   id_feedback integer NOT NULL,
+   fbk_msg VARCHAR(140),
+   email VARCHAR(50),
+   id_customer integer,
+   idpcar_usr integer,
+   id_trip integer,
+   PRIMARY KEY (id_feedback),
+   UNIQUE (id_customer)
+);
+
+CREATE TABLE  owns (
+   id_owner integer NOT NULL,
+   num_cars  integer,
+   PRIMARY KEY (id_owner)
+);
+
+CREATE TABLE  owners_details (
+   id_owner integer NOT NULL,
+   idpcar integer,
+   PRIMARY KEY (id_owner, idpcar)
+);
+
+CREATE TABLE individual (
+   ssn integer NOT NULL,
+   name VARCHAR(20),
+   id_owner integer,
+   PRIMARY KEY (ssn)
+);
+
+CREATE TABLE  car_service_company (
+   Tsc_id integer NOT NULL,
+   Tsc_name VARCHAR(20),
+   id_owner integer,
+   PRIMARY KEY (Tsc_id)
+);
