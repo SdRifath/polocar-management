@@ -1,0 +1,75 @@
+ed p1.sql
+------------------------------------------------------------
+
+CREATE OR REPLACE PROCEDURE TRIP_END(v_trip IN INT , v_discount IN Decimal )
+AS
+BEGIN
+DECLARE 
+v_total_time INT := -1;
+v_bill_no INT :=-1;
+BEGIN
+select extract(day from (sysdate - Strt_time))*24 + extract(hour from (sysdate - Strt_time))   into v_total_time from trip_details where id_trip = v_trip;
+
+update trip_details set End_time = sysdate where id_trip = id_trip ;
+update bill_details set Bill_date = sysdate , disc_amnt = v_discount ,tot_amnt = (v_total_time * 15) - v_discount where id_trip = v_trip  ;
+END ;
+END ;
+/
+
+@p1
+
+
+ed p2.sql
+--------------------------------------------------------------
+
+CREATE OR REPLACE TRIGGER UPDATE_DRIVER_RATING 
+AFTER INSERT  ON feedback 
+FOR EACH ROW 
+WHEN (NEW.fbk_msg like '%Bad Driver%') 
+DECLARE 
+   v_idpcar_driver INT; 
+BEGIN 
+   select idpcar_driver into v_idpcar_driver from trip_details where pcar_driver = :NEW.pcar_driver;
+   
+   update pcar_driver set Rating = Rating -1 where   idpcar_driver = v_idpcar_driver;
+END; 
+/
+
+
+@p2
+
+
+ed p3.sql
+--------------------------------------------------------------
+
+CREATE OR REPLACE TRIGGER  ADD_NO_OF_CARS 
+BEFORE INSERT OR UPDATE ON owns
+FOR EACH ROW 
+DECLARE 
+   v_no_of_cars INT; 
+BEGIN
+   select count(idpcar) into v_no_of_cars from OWNER_TAXI where id_owner = :NEW.id_owner group by id_owner;
+   :NEW.num_cars := v_no_of_cars;
+END;
+/
+
+
+ed p4.sql
+
+CREATE OR REPLACE PROCEDURE TRIP_END(v_trip IN INT , v_discount IN Decimal )
+AS
+BEGIN
+DECLARE 
+v_total_time INT := -1;
+v_bill_no INT :=-1;
+BEGIN
+select extract(day from (sysdate - Strt_time))*24 + extract(hour from (sysdate - Strt_time))   into v_total_time from trip_details where id_trip= v_trip;
+
+update trip_details set End_time = sysdate where id_trip = v_trip ;
+update bill_details set bill_date = sysdate , disc_amnt = v_discount ,tot_amnt = (v_total_time * 15) - v_discount where id_trip = v_trip  ;
+END ;
+END ;
+/
+
+@p4
+
